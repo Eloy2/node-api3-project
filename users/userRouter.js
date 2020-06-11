@@ -11,8 +11,7 @@ router.get('/', (req, res) => {
     res.status(200).json(users)
   })
   .catch(err => {
-    console.log(err)
-    res.status(500).json({ error: "Could not get list of users!"})
+    next(err) // THIS WILL TRIGGER THE ERROR MIDDELWARE IN INDEX.JS
   })
 })
 /*****************************************************************************************/
