@@ -4,6 +4,19 @@ const postdb = require("../posts/postDb");
 
 const router = express.Router();
 
+// added the block below so that when I view app in heroku I get some output back
+router.get('/', (req, res) => {
+  userdb.get()
+  .then(users => {
+    res.status(200).json(users)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ error: "Could not get list of users!"})
+  })
+})
+/*****************************************************************************************/
+
 router.post('/users', validateUser, (req, res) => {
   res.status(200).json(req.newUser)
 });
